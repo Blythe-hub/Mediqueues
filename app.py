@@ -12,13 +12,12 @@ def login():
     session['last'] = form['last']
     session['address'] = form['address']
     session['provider'] = form['provider']
-    session['spot'] = #getting max from db
+    session['spot'] = 'none'#getting max from db
     render_template('login.html')
 
-@app.route('/queues', methods=["GET","POST"])
+@app.route('/queues')
 def queues():
-    form = request.form
-    session['spot'] = #getting users new spot
+    session['spot'] = 'spot'#getting users new spot
     render_template('queues.html', name = session['first'], spot = session['spot'])
 
 @app.route('/leave')
@@ -26,4 +25,4 @@ def leave():
     #delete user from db
     pass
 if __name__ == '__main__':
-    io.run(app, debug = True)
+    app.run(debug = True)
