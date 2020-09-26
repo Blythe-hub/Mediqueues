@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+
+function get_action(form) 
+{
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+         document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
+}
+
+</script>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
+/* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -21,7 +34,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-
+/* Set a style for all buttons */
 button {
   background-color: #4CAF50;
   color: white;
@@ -36,7 +49,7 @@ button:hover {
   opacity: 0.8;
 }
 
-
+/* Extra styles for the cancel button */
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
@@ -64,11 +77,11 @@ span.psw {
   padding-top: 16px;
 }
 
-
+/* The Modal (background) */
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -79,15 +92,15 @@ span.psw {
   padding-top: 60px;
 }
 
-
+/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; 
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; 
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
-
+/* The Close Button (x) */
 .close {
   position: absolute;
   right: 25px;
@@ -103,6 +116,7 @@ span.psw {
   cursor: pointer;
 }
 
+/* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
@@ -118,7 +132,7 @@ span.psw {
   to {transform: scale(1)}
 }
 
-
+/* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
      display: block;
@@ -132,53 +146,123 @@ span.psw {
 </head>
 <body>
 
-<h2>Mediqueue Login Form</h2>
+<h1 style="color:red;">Medi Queue</h1> 
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+<h2> Login form</h2>
+
+<style>
+        .button {
+ 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button3 {background-color: #e7e7e7; color: black;} /* Gray */ 
+
+</style>
+
+<button class = button3 onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
 <div id="id01" class="modal">
   
   <form class="modal-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="FinalMediqueue logo.png" alt="" class="">    /* displays logo for Mediqueue
-   
+      <img src="FinalMediqueue logo.png" alt="Mediqueue" class="logo">
     </div>
-
+<br>
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="fname"> <b><br>First name</b></label>
+      <input type="text" placeholder="Enter first name" name="Fname" required>
+       <div class="container">
+      <label for="fname"> <b><br>Last name</b></label>
+      <input type="text" placeholder="Enter last name" name="Fname" required>
+<style>
+body {
+  padding: 10px;
+  border: 5px solid #0000FF;
+}
+</style>
+      <label for="bday"><b>Date of birth</b></label>
+      <input type="date" placeholder="Enter date of birth" name="Date of birth" required>
+      <br>
+      
+      
+      <div class="container">
+   <label for="provider"><b>Health care provider </b></label>
+        <input type="text" placeholder="Enter health care provider eg. Anthem" name="provider" required> 
+       
+              <div class="container">
+              <label for="provider"><b> Your Insurance number:</b></label>
+              <input type="password" placeholder="Enter format: QQ123456C"id="myInput">
+              <input type="checkbox" onclick="myFunction()">Show number
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+   
+        </br>
+        <style>
+        .button {
+ 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+
+</style>
+
+<body>
+<div class="g-recaptcha" id="rcaptcha"  data-sitekey="site key"></div>
+<span id="captcha" style="color:red" /></span> <!-- this will show captcha errors -->
+      <button class = button4 button type="submit"><a style= "text-decoration:none" href="/leave">Login</button></a>
       <label>
+      
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
+    <div class="container" style="background-color:#0000A0">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      <span class="psw" style="color:red;"> Need <a href="#" style="color:red;">assistance-call your hospital#</a></span>
     </div>
   </form>
 </div>
 
 <script>
-// Get the model
+// Get the modal
 var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the model, close it
+// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
