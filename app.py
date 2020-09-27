@@ -5,7 +5,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdkjhlsdfg'
 execute = methods(config)
 
-@app.route('/', methods=["GET","POST"])
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/login', methods=["GET","POST"])
 def login():
     form = request.form.to_dict()
     if 'first' in form and 'last' in form and 'birthday' in form and 'provider' in form:
@@ -16,26 +21,36 @@ def login():
         session['spot'] = spot = execute.new_spot()
         execute.new_entry(first, last, birthday, provider, spot)
         return redirect('/queues')
+    elif 'first' in session:
+        return redirect('/queues')
     return render_template('login.html')
 
 @app.route('/queues')
 def queues():
     first = session['first']
     last = session['last']
-    tem_spot = execute.get_spot(first, last)
-    session['spot'] = tem_spot[0]
+    session['spot'] =  execute.get_spot(first, last)
+    
     infront = execute.total_infront(first, last)
-    return render_template('queues.html', name = session['first'], spot = session['spot'], total_infront = infront)
+    if session['spot'] != None:
+        return render_template('queues.html', name = first, spot = session['spot'][0], total_infront = infront)
+    return render_template('queues.html', name = first, spot = 1, total_infront = infront)
 
 @app.route('/leave')
 def leave():
-    first = session['first']
-    last = session['last']
-    spot = session['spot']
-    execute.leave(first, last, spot)
-    return redirect('/')
+    if 'first' in session:
+        first = session['first']
+        last = session['last']
+        spot = session['spot']
+        execute.leave(first, last, spot)
+        for i in list(session.keys()):
+            session.pop(i,None)
+            print(i)
+
+    return redirect('/login')
 
 if __name__ == '__main__':
     app.run(debug = True)
 
-#connect heroku database
+#host on heroku
+#refresh wont update, queries

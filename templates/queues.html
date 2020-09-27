@@ -80,17 +80,20 @@
             margin-left: auto;
             /* background-color: red; */
         }
-
+        h3{
+            position: relative;
+            left: 40%;
+        }
     </style>
     <div class="header">
 
-    <img src="../static/images/minilogo.png">
+    <a href="/"><img src="../static/images/minilogo.png"></a>
 
-    <a href="#"><img src="../static/images/refresh.png" width="30" height="30"></a>
-
+    <a href="/queues"><img src="../static/images/refresh.png" width="30" height="30"></a>
+    
     </div>    
     <br>
-    <br>
+    <h3>Hey {{name}}, you are...</h3>
     <div class="queueBigBox">
         <!-- <img src="../images/textlogosmall.png"> -->
         <div>
@@ -98,11 +101,14 @@
                 <!-- PUT THE NUMBER IN LINE HERE -->
                 #{{spot}}
             </p>
-            
-            <p> 
-                <!-- PUT THE NUMER OF PPL AHEAD OF THE PERSON HERE -->
+            {% if total_infront == 0: %}
+                <p>Your turn is up!</p>
+            {% else: %}
+                <p> 
+                    <!-- PUT THE NUMER OF PPL AHEAD OF THE PERSON HERE -->
                 
                 {{total_infront}} ahead of you...</p>
+            {% endif %}
         </div>
         
     </div>

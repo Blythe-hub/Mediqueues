@@ -62,13 +62,15 @@ class methods():
         cur.execute("SELECT spot FROM queues "
                     f"WHERE first='{first}' AND last='{last}';")
         current_spot = cur.fetchone()
-        cur.execute("SELECT * FROM queues "
-                    f"WHERE spot < {current_spot[0]};")
-        total_list = list(cur.fetchall())
-        total = len(total_list)
-        cur.close()
-        print(total, " total")
-        return total
+        if current_spot != None:
+            cur.execute("SELECT * FROM queues "
+                        f"WHERE spot < {current_spot[0]};")
+            total_list = list(cur.fetchall())
+            total = len(total_list)
+            cur.close()
+            print(total, " total")
+            return total
+        return 0
 
     def leave(self, first, last, spot):
         self.connect()
