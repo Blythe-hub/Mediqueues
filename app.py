@@ -19,6 +19,7 @@ def login():
         session['birthday'] = birthday = form['birthday']
         session['provider'] = provider = form['provider']
         session['spot'] = spot = execute.new_spot()
+        print(form)
         execute.new_entry(first, last, birthday, provider, spot)
         return redirect('/queues')
     elif 'first' in session:
