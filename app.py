@@ -45,7 +45,6 @@ def leave():
         execute.leave(first, last, spot)
         for i in list(session.keys()):
             session.pop(i,None)
-            print(i)
 
     return redirect('/login')
 
