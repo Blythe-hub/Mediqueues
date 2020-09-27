@@ -22,8 +22,7 @@ def login():
         print(form)
         execute.new_entry(first, last, birthday, provider, spot)
         return redirect('/queues')
-    elif 'first' in session:
-        return redirect('/queues')
+
     return render_template('login.html')
 
 @app.route('/queues')
