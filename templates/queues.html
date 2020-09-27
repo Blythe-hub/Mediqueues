@@ -84,9 +84,9 @@
     </style>
     <div class="header">
 
-    <img src="../images/minilogo.png">
+    <img src="../static/images/minilogo.png">
 
-    <a href="#"><img src="../images/refresh.png" width="30" height="30"></a>
+    <a href="#"><img src="../static/images/refresh.png" width="30" height="30"></a>
 
     </div>    
     <br>
@@ -96,18 +96,19 @@
         <div>
             <p class="queueNumber">
                 <!-- PUT THE NUMBER IN LINE HERE -->
-                12
+                #{{spot}}
             </p>
+            
             <p> 
                 <!-- PUT THE NUMER OF PPL AHEAD OF THE PERSON HERE -->
                 
-                11 people ahead of you...</p>
+                {{total_infront}} ahead of you...</p>
         </div>
         
     </div>
     <br>
     <br>
-    <a href="/leave" style="align-self: center;"><img src="../images/leave.png" width="189" height="60"></a>
+    <a href="/leave" style="align-self: center;"><img src="../static/images/leave.png" width="189" height="60"></a>
 
 </body>
 </html>
